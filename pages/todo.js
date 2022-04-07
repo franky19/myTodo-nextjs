@@ -7,8 +7,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import Input from '@mui/material/Input';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import List from '@mui/material/List';
-import FormGroup from '@mui/material/FormGroup';
-import InputLabel from '@mui/material/InputLabel';
 import PropTypes from 'prop-types';
 
 Todo.propTypes = {
@@ -24,6 +22,7 @@ Todo.defaultProps ={
     onEdited:null,
     markCompleted: null,
 }
+
 function Todo(props) {
     const {
         todo,
@@ -32,7 +31,7 @@ function Todo(props) {
         onEdited,
         markCompleted
       } = props;
-      const [text, setText] = useState(todo.text);
+      const [text, setText] = useState(todo?.text);
       const [isEditing,setIsEditing] = useState(false)
 
 
@@ -63,18 +62,18 @@ function Todo(props) {
 
     return (
        <>
-        <List className= {`${isEditing ? "editing" : ""} ${todo.isCompleted ? "completed" : ""} `} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}> 
+        <List className= {`${isEditing ? "editing" : ""} ${todo?.isCompleted ? "completed" : ""} `} sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}> 
          {!isEditing ?
             <div className = "view">
                 <Box component="div" display="inline">
                     <FormControlLabel id='todoList' control={
                     <Checkbox
-                    checked={todo.isCompleted}
+                    checked={todo?.isCompleted}
                     onChange = {()=>markCompleted(todo)}
                     inputProps={{ 'aria-label': 'controlled' }}
                     id="todoList"
                     />} 
-                    label={todo.text}  />
+                    label={todo?.text}  />
                     <IconButton color="warning" id="todoList" aria-label="destroy" component="span" onClick={(e)=> {e.preventDefault(); handleEdit(todo);}}>
                      <EditIcon/>
                  </IconButton>
