@@ -2,6 +2,7 @@ import React , { useState } from 'react';
 import {Box,Card,CardContent,Typography,Button,CardActions,AppBar,Toolbar,IconButton} from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import TodoForm from "./todoForm"
+import TodoList from "./todoList"
 
 export  function Main() {
   const [todoList, setTodoList] = useState([
@@ -90,7 +91,16 @@ function clearCompleted(){
               isCheckedAll = {isCheckedAll}
               onSubmit={handleTodoFormSubmit} 
       />
-            
+             <Typography sx={{m:1}}>List</Typography> 
+      <TodoList 
+        todos={filterByStatus(todoList,status)} 
+        onDelClick={handleDeleteItem}
+        onEditTodo={handleEditTodo}
+        onEditedTodo = {handleEdited}
+        markCompleted = {markCompleted}
+        isCheckedAll = {isCheckedAll}
+        checkAllTodos = {checkAllTodos}
+        />
     </CardContent>
   </Card>
     </Box>
